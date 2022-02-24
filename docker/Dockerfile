@@ -4,7 +4,7 @@
 # credentials cause Docker-Hub-based builds to fail on quay.io; see
 # https://issues.redhat.com/browse/PROJQUAY-1299?_sscc=t for details.
 
-FROM quay.io/bcdev/jupyterhub:2.1.1
+FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n326.h1619dc2d
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
