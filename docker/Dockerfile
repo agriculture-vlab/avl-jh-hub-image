@@ -8,7 +8,7 @@ FROM quay.io/bcdev/jupyterhub:2.1.1
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.0.0"
+LABEL version="1.0.1"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
@@ -25,5 +25,3 @@ RUN apt-get update --yes && \
 # Add create user module
 
 COPY create_user.py /usr/local/lib/python3.8/dist-packages/agriculturevlab/create_user.py
-
-WORKDIR "${HOME}"
