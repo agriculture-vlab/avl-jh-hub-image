@@ -8,7 +8,7 @@ FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n326.h1619dc2d
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.0.1"
+LABEL version="1.0.2"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
