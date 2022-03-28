@@ -3,16 +3,18 @@
 # anonymous pull rate limits and quay.io's lack of support for pull
 # credentials cause Docker-Hub-based builds to fail on quay.io; see
 # https://issues.redhat.com/browse/PROJQUAY-1299?_sscc=t for details.
+# The base image is copied from https://hub.docker.com/r/jupyterhub/k8s-hub
+# and defined in
+# https://github.com/jupyterhub/zero-to-jupyterhub-k8s/tree/main/images/hub .
 
 FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n326.h1619dc2d
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.0.2"
+LABEL version="1.0.3"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
-
 
 # Install boto3
 
@@ -22,6 +24,11 @@ RUN apt-get update --yes && \
     python3-boto3 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add create user module
+# Install AVL package. Note the use of --no-deps: for the hub, we only need
+# the avl._admin module, which doesn't have any dependencies beyond boto3
+# and standard library modules. So we don't set up a whole conda environment
+# here, but just install AVL for the system Python which is used to run the
+# jupyterhub process.
 
-COPY create_user.py /usr/local/lib/python3.8/dist-packages/agriculturevlab/create_user.py
+RUN python3 -m pip install --no-deps \
+    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.1.0.tar.gz
