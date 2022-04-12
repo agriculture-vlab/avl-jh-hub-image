@@ -9,6 +9,10 @@
 
 FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n326.h1619dc2d
 
+# The parent image sets NB_USER as an ARG, not an ENV, so we have to
+# set it explicitly here.
+ARG NB_USER=jovyan
+
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
 LABEL version="1.0.4"
@@ -17,7 +21,6 @@ LABEL description="AVL JupyterHub hub image"
 USER root
 
 # Install boto3
-
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --yes && \
     apt-get install --yes --no-install-recommends \
@@ -29,6 +32,8 @@ RUN apt-get update --yes && \
 # and standard library modules. So we don't set up a whole conda environment
 # here, but just install AVL for the system Python which is used to run the
 # jupyterhub process.
-
 RUN python3 -m pip install --no-deps \
     https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.1.1.tar.gz
+
+# Use NB_USER as the default user when executing the image.
+USER ${NB_USER}
