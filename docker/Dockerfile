@@ -15,7 +15,7 @@ ARG NB_USER=jovyan
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.0.4"
+LABEL version="1.0.5.dev0"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
