@@ -7,7 +7,7 @@
 # and defined in
 # https://github.com/jupyterhub/zero-to-jupyterhub-k8s/tree/main/images/hub .
 
-FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n326.h1619dc2d
+FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n460.h73387dcf
 
 # The parent image sets NB_USER as an ARG, not an ENV, so we have to
 # set it explicitly here.
@@ -15,7 +15,7 @@ ARG NB_USER=jovyan
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.0.5.dev0"
+LABEL version="1.0.5"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
