@@ -1,3 +1,7 @@
+## Changes in 1.1.0
+
+* Use k8s-hub:1.2.0 as the base image.
+
 ## Changes in 1.0.5
 
 * Set `NB_USER`, not root, as default user for the image (fixes #1).

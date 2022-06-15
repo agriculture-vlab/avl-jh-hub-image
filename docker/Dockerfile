@@ -6,8 +6,10 @@
 # The base image is copied from https://hub.docker.com/r/jupyterhub/k8s-hub
 # and defined in
 # https://github.com/jupyterhub/zero-to-jupyterhub-k8s/tree/main/images/hub .
+# The base image version should be chosen carefully for compatibility with
+# the z2jh Helm chart and the user image.
 
-FROM quay.io/bcdev/jupyterhub-k8s-hub:1.1.3-n460.h73387dcf
+FROM quay.io/bcdev/jupyterhub-k8s-hub:1.2.0
 
 # The parent image sets NB_USER as an ARG, not an ENV, so we have to
 # set it explicitly here.
@@ -15,7 +17,7 @@ ARG NB_USER=jovyan
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.0.5"
+LABEL version="1.1.0"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
