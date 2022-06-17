@@ -1,3 +1,7 @@
+## Changes in 1.1.1
+
+* Update agriculture-vlab package from 0.1.1 to 0.1.2.
+
 ## Changes in 1.1.0
 
 * Use k8s-hub:1.2.0 as the base image.
