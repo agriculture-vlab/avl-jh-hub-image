@@ -17,7 +17,7 @@ ARG NB_USER=jovyan
 
 LABEL maintainer="pontus.lurcock@brockmann-consult.de"
 LABEL name="avl-jh-hub"
-LABEL version="1.1.1"
+LABEL version="1.1.2"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
@@ -35,7 +35,7 @@ RUN apt-get update --yes && \
 # here, but just install AVL for the system Python which is used to run the
 # jupyterhub process.
 RUN python3 -m pip install --no-deps \
-    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.1.2.tar.gz
+    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.1.3.tar.gz
 
 # Use NB_USER as the default user when executing the image.
 USER ${NB_USER}

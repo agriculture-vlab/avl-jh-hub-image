@@ -1,3 +1,7 @@
+## Changes in 1.1.2
+
+* Update agriculture-vlab package from 0.1.2 to 0.1.3.
+
 ## Changes in 1.1.1
 
 * Update agriculture-vlab package from 0.1.1 to 0.1.2.
