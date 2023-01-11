@@ -15,9 +15,9 @@ FROM quay.io/bcdev/jupyterhub-k8s-hub:2.0.0
 # set it explicitly here.
 ARG NB_USER=jovyan
 
-LABEL maintainer="pontus.lurcock@brockmann-consult.de"
+LABEL maintainer="support@agriculturevlab.eu"
 LABEL name="avl-jh-hub"
-LABEL version="2.0.0-beta.1"
+LABEL version="2.0.0-beta.2"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
@@ -30,7 +30,7 @@ USER root
 # - As of v2.0.0, the k8s hub image we use as base is in turn based on the
 #   Debian-based official Python image, which doesn't include dist-packages
 #   in the Python path. So it's simplest to install boto3 with pip rather
-#   than apt, which puts it in site-packages where python can find it.
+#   than apt, because pip puts it in site-packages where python can find it.
 # - We temporarily install gcc and libc-dev because pip needs them to install
 #   the avl package from its tarball.
 
@@ -39,7 +39,7 @@ RUN apt-get update --yes \
     && apt-get install --yes --no-install-recommends gcc libc-dev \
     && pip install boto3==1.26.41 \
     && pip install --no-deps \
-    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.1.4.tar.gz \
+    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.2.1.tar.gz \
     && pip cache purge \
     && apt-get purge --yes gcc libc-dev \
     && apt-get autoremove --yes \
