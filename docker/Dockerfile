@@ -17,7 +17,7 @@ ARG NB_USER=jovyan
 
 LABEL maintainer="support@agriculturevlab.eu"
 LABEL name="avl-jh-hub"
-LABEL version="2.0.0-beta.2"
+LABEL version="2.0.0"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
