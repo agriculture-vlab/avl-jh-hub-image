@@ -1,3 +1,9 @@
+## Changes in 2.0.0
+
+* Update base image to v2.0.0 of jupyterhub-k8s-hub.
+* Update agriculture-vlab package from 0.1.4 to 0.2.1.
+* Install boto3 using pip, not apt.
+
 ## Changes in 1.1.3
 
 * Update agriculture-vlab package from 0.1.3 to 0.1.4.
