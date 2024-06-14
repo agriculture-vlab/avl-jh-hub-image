@@ -1,23 +1,24 @@
-# We use a standard JupyterHub hub image as base. The original image is hosted
-# on Docker Hub, but we use our own copy on quay.io, because Docker Hub's
-# anonymous pull rate limits and quay.io's lack of support for pull
-# credentials cause Docker-Hub-based builds to fail on quay.io; see
-# https://issues.redhat.com/browse/PROJQUAY-1299?_sscc=t for details.
-# The base image is copied from https://hub.docker.com/r/jupyterhub/k8s-hub
-# and defined in
-# https://github.com/jupyterhub/zero-to-jupyterhub-k8s/tree/main/images/hub .
+# We use a standard JupyterHub hub image as base. Unlike the user image,
+# the hub image is not intended for (much) customization, so we make as few
+# changes as possible.
+
+# As of 2024, JupyterHub images are now available on quay.io, so we no longer
+# have to duplicate them from dockerhub to work around the issue described at
+# https://issues.redhat.com/browse/PROJQUAY-1299. The base images are defined
+# at https://github.com/jupyterhub/zero-to-jupyterhub-k8s/tree/main/images/hub.
+
 # The base image version should be chosen carefully for compatibility with
 # the z2jh Helm chart and the user image.
 
-FROM quay.io/bcdev/jupyterhub-k8s-hub:2.0.0
+FROM quay.io/jupyterhub/k8s-hub:3.3.7
 
 # The parent image sets NB_USER as an ARG, not an ENV, so we have to
 # set it explicitly here.
 ARG NB_USER=jovyan
 
-LABEL maintainer="support@agriculturevlab.eu"
+LABEL maintainer="contact@agriculturevlab.eu"
 LABEL name="avl-jh-hub"
-LABEL version="2.0.0"
+LABEL version="4.0.0"
 LABEL description="AVL JupyterHub hub image"
 
 USER root
@@ -37,9 +38,9 @@ USER root
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --yes \
     && apt-get install --yes --no-install-recommends gcc libc-dev \
-    && pip install boto3==1.26.41 \
+    && pip install boto3==1.34.125 \
     && pip install --no-deps \
-    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.2.1.tar.gz \
+    https://github.com/agriculture-vlab/agriculture-vlab/archive/refs/tags/v0.3.0.tar.gz \
     && pip cache purge \
     && apt-get purge --yes gcc libc-dev \
     && apt-get autoremove --yes \
