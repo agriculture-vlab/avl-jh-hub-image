@@ -1,13 +1,3 @@
-## Changes in 4.0.0
-
-* Note: version 3 skipped in order to synchronize major version numbering
-  with AVL user image.
-* Update base image to v3.3.7, which provides jupyterhub package
-  version 4.1.5.
-* Update maintainer email address.
-* Update avl package to version 0.3.0.
-* Update boto3 to version 1.34.125.
-
 ## Changes in 2.0.0
 
 * Update base image to v2.0.0 of jupyterhub-k8s-hub.
